@@ -82,19 +82,15 @@
       </tbody>
     </table>
   </div>
-  <form id="checkout-form" action="/transaction-endpoint" method="post">
+  <form id="checkout-form" class="form-horizontal" method="post" style="background-color: white;" hidden>
     <div id="error-message"></div>
-
     <label for="card-number">Card Number</label>
     <div class="hosted-field" id="card-number"></div>
-
     <label for="cvv">CVV</label>
     <div class="hosted-field" id="cvv"></div>
-
     <label for="expiration-date">Expiration Date</label>
     <div class="hosted-field" id="expiration-date"></div>
-
     <input type="hidden" name="payment-method-nonce">
-    <input type="submit" value="Pay $10" disabled>
+    <button type="button" id="checkout" class="btn-success btn-sm" disabled>Pay {{checkoutAmount}} EUR</button>
   </form>
 </div>

@@ -41,10 +41,18 @@ angular.module('feApp')
       });
     };
 
+    $scope.clearBrainTree = function() {
+      document.querySelectorAll('iframe[name^="braintree-"]').forEach(function( node ) {
+          node.parentNode.removeChild( node );
+      });
+    };
+
     $scope.initBrainTree = function(clientToken, checkoutAmount) {
       $scope.checkoutAmount = checkoutAmount;
+      $scope.clearBrainTree();
       var form = document.querySelector('#checkout-form');
-      var submit = document.querySelector('input[type="submit"]');
+      form.removeAttribute('hidden');
+      var submit = document.querySelector('button[id="checkout"]');
       braintree.client.create({
         authorization : clientToken
         }, function(err, clientInstance){
@@ -82,12 +90,12 @@ angular.module('feApp')
                 }
               }, function (hostedFieldsErr, hostedFieldsInstance) {
                 if (hostedFieldsErr) {
-                  $window.alert("Error creating hosted fields");
+                  $window.alert("Error creating hosted fields. "+hostedFieldsErr.message);
                   return;
                 }
                 submit.removeAttribute('disabled');
 
-                form.addEventListener('submit', function (event) {
+                submit.addEventListener('click', function (event) {
                   event.preventDefault();
                   hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
                     if (tokenizeErr) {
@@ -134,10 +142,12 @@ angular.module('feApp')
           url: checkoutUrl,
           data: postData
         }).then(function successCallback(response) {
+          $scope.clearBrainTree();
+          document.querySelector('button[id="checkout"]').disabled = true;
             $window.alert(response.data);
           }, function errorCallback(response) {
             console.log(response);
-            $window.alert(response.data);
+            $window.alert("Error making payment. Please refresh and try again later.");
       });
 
     };
@@ -155,10 +165,9 @@ angular.module('feApp')
           method: 'GET',
           url: urlData
         }).then(function successCallback(response) {
-            $scope.response = response.data;
             $scope.parseRoutes(response.data);
           }, function errorCallback(response) {
-            $scope.response = response;
+            $window.alert("Error while fetching routes. " + response.data);
           });
       };
 
