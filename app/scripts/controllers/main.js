@@ -44,9 +44,57 @@ angular.module('feApp')
           });
       };
 
-      $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+      $scope.map = {
+          center: { latitude: 52.5200, longitude: 13.4050 },
+          zoom: 12,
+          control: {}
+        };
+      $scope.marker={};
+      $scope.marker.options = {
+        //icon:'//developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+      };
+
+      $scope.markers = [
+        {
+          id: Date.now(),
+          location : {
+            latitude: $scope.user.fromXCoordinates,
+            longitude: $scope.user.fromYCoordinates
+          }
+        },
+        {
+          id: Date.now()+1,
+          location : {
+            latitude: $scope.user.toXCoordinates,
+            longitude: $scope.user.toYCoordinates
+          }
+        },
+      ];
+      
+      $scope.initMarkers = function() {
+        $scope.markers = [
+          {
+            id: Date.now(),
+            location : {
+              latitude: $scope.user.fromXCoordinates,
+              longitude: $scope.user.fromYCoordinates
+            }
+          },
+          {
+            id: Date.now()+1,
+            location : {
+              latitude: $scope.user.toXCoordinates,
+              longitude: $scope.user.toYCoordinates
+            }
+          },
+        ];
+      };
 
       uiGmapGoogleMapApi.then(function(maps) {
         console.log(maps);
-    });
+      });
+
+      $scope.updateCoords = function(id) {
+        $scope.initMarkers();
+      };
   }]);

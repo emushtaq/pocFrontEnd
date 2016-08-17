@@ -6,18 +6,18 @@
     <div class="form-group">
       <label class="col-sm-4 control-label">From Coordinates (Berlin)</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="fromXCoordinates" ng-model="user.fromXCoordinates"
+        <input type="text" class="form-control" id="fromXCoordinates" ng-change="updateCoords(1)" ng-model="user.fromXCoordinates"
         placeholder="eg: 52.52656141115588">
-        <input type="text" class="form-control" id="fromYCoordinates" ng-model="user.fromYCoordinates"
+        <input type="text" class="form-control" id="fromYCoordinates" ng-change="updateCoords(1)" ng-model="user.fromYCoordinates"
         placeholder="eg: 13.358001708984375">
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-4 control-label">To Coordinates (Berlin)</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="toCoordinates" ng-model="user.toXCoordinates"
+        <input type="text" class="form-control" id="toCoordinates" ng-change="updateCoords(2)" ng-model="user.toXCoordinates"
         placeholder="eg: 52.493233155027156">
-        <input type="text" class="form-control" id="toCoordinates" ng-model="user.toYCoordinates"
+        <input type="text" class="form-control" id="toCoordinates" ng-change="updateCoords(2)" ng-model="user.toYCoordinates"
         placeholder="eg: 13.422374725341797">
       </div>
     </div>
@@ -49,6 +49,17 @@
       </div>
     </div>
   </form>
-
-  <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+  <ui-gmap-google-map center='map.center' zoom='map.zoom' control='map.control'>
+    <ui-gmap-marker
+    docluster="true"
+            dorebuildall="true"
+            options="marker.options"
+            ng-repeat="marker in markers"
+            coords="marker.location"
+            fit="false"
+            idkey="'<< marker.id >>'" >
+    </ui-gmap-marker>
+    <!-- <ui-gmap-markers models="markers" coords="'self'" icon="'icon'">
+    </ui-gmap-markers> -->
+  </ui-gmap-google-map>
 </div>
