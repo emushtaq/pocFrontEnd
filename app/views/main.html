@@ -1,8 +1,54 @@
 <div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
   <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
+    <img src="http://www.seven-re.com/sevenre/ver_3/responsive_1.0/../_shared/images/trackre/logo/logo_gray.png"><br>
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-sm-4 control-label">From Coordinates (Berlin)</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="fromXCoordinates" ng-model="user.fromXCoordinates"
+        placeholder="eg: 52.52656141115588">
+        <input type="text" class="form-control" id="fromYCoordinates" ng-model="user.fromYCoordinates"
+        placeholder="eg: 13.358001708984375">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-4 control-label">To Coordinates (Berlin)</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="toCoordinates" ng-model="user.toXCoordinates"
+        placeholder="eg: 52.493233155027156">
+        <input type="text" class="form-control" id="toCoordinates" ng-model="user.toYCoordinates"
+        placeholder="eg: 13.422374725341797">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="date" class="col-sm-4 control-label">Date</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="date" ng-model="user.date"
+      placeholder="eg: 10-20-2015">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="time" class="col-sm-4 control-label">Time</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="time" ng-model="user.time"
+        placeholder="eg: 05:13:00pm">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="maxWalkDistance" class="col-sm-4 control-label">Max walk distance</label>
+      <div class="col-sm-8">
+        <input type="number" class="form-control" id="maxWalkDistance" ng-model="user.maxWalkDistance"
+      placeholder="eg: 800">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button class="btn btn-default" ng-click="fetchRoutes()">Fetch Routes</button>
+      </div>
+    </div>
+  </form>
+
+  <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
 </div>
