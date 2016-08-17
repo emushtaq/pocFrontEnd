@@ -56,7 +56,6 @@
       </div>
     </div>
 
-
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
@@ -71,8 +70,8 @@
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -82,10 +81,23 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <script src='bower_components/lodash/dist/lodash.js'></script>
-    <script src='bower_components/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
-    <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyApmA-heaA7NVO6GYfQI1LiL_zyDAQvSok'></script>
-    <script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
+
+    <!-- <script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script> -->
+    <!-- <script src='braintreelib.js'></script> -->
+
+<script src="https://js.braintreegateway.com/web/3.0.0/js/client.min.js"></script>
+
+<!-- Load additional components if desired. -->
+<script src="https://js.braintreegateway.com/web/3.0.0/js/hosted-fields.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.0.0/js/paypal.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.0.0/js/data-collector.min.js"></script>
+
+<script src='bower_components/lodash/dist/lodash.js'></script>
+<script src='bower_components/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
+<script src='//maps.googleapis.com/maps/api/js?key=AIzaSyApmA-heaA7NVO6GYfQI1LiL_zyDAQvSok'></script>
+<script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
+
+<!-- <script src='bower_components/braintree-angular/lib/braintree-angular.js'></script> -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>

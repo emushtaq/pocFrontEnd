@@ -44,7 +44,7 @@
     </div>
 
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
+      <div class="col-sm-12">
         <button class="btn btn-default" ng-click="fetchRoutes()">Fetch Routes</button>
       </div>
     </div>
@@ -61,5 +61,40 @@
     </ui-gmap-marker>
     <!-- <ui-gmap-markers models="markers" coords="'self'" icon="'icon'">
     </ui-gmap-markers> -->
-  </ui-gmap-google-map>
+  </ui-gmap-google-map><br>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class = "text-center">Route</th>
+          <th class = "text-center">Total Time</th>
+          <th class = "text-center">Route Payment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="route in suggestedRoutes">
+          <td class = "text-center">{{$index + 1}}</td>
+          <td class = "text-center">{{ route.transitTime / 60}} Mins</td>
+          <td class = "text-center">
+            <button type="button" ng-click="makePayment(route.totalPrice)" class="btn-success btn-sm">Buy for {{ route.totalPrice }} EUR</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <form id="checkout-form" action="/transaction-endpoint" method="post">
+    <div id="error-message"></div>
+
+    <label for="card-number">Card Number</label>
+    <div class="hosted-field" id="card-number"></div>
+
+    <label for="cvv">CVV</label>
+    <div class="hosted-field" id="cvv"></div>
+
+    <label for="expiration-date">Expiration Date</label>
+    <div class="hosted-field" id="expiration-date"></div>
+
+    <input type="hidden" name="payment-method-nonce">
+    <input type="submit" value="Pay $10" disabled>
+  </form>
 </div>

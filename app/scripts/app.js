@@ -17,6 +17,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'uiGmapgoogle-maps'
+    // 'braintree-angular'
   ])
   .config(function ($routeProvider) {
     $routeProvider
